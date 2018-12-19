@@ -1,0 +1,21 @@
+[
+	{
+		"modid": "dshuds",
+		"name": "Dynamic Surroundings: HUDs",
+		"description": "Adds several HUDs that were originally in Dynamic Surroundings",
+		"version": "$version",
+		"mcversion": "$mcversion",
+		"url": "",
+		"updateUrl": "https://raw.githubusercontent.com/OreCruncher/DynamicSurroundingsHuds/master/version.json",
+		"updateJSON": "https://raw.githubusercontent.com/OreCruncher/DynamicSurroundingsHuds/master/version.json",
+		"authorList": [
+			"OreCruncher"
+		],
+		"credits": "",
+		"logoFile": "",
+		"screenshots": [
+		],
+		"dependencies": [
+		]
+	}
+]

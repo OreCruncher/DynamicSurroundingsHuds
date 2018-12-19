@@ -1,0 +1,95 @@
+#PARSE_ESCAPES
+# RU Russian Translations
+dshuds.msg.dshuds=Dynamic Surroundings: HUDs
+
+# Обновления данных
+dshuds.metadata.Name=§3Dynamic Surroundings: HUDs
+dshuds.metadata.Credits=\n\n§eАтрибуты звука и текстуры§r в <INSERT HERE>\n\n
+dshuds.metadata.Authors=§6OreCruncher§r
+dshuds.metadata.Description=Различные HUDs из Динамического Окружения
+
+# Привязки клавиш
+dshuds.cfg.keybind.SelectionBox=Переключить выделение
+dshuds.cfg.keybind.LightLevel=Переключить уровень освещённости
+dshuds.cfg.keybind.ChunkBorders=Переключить границы чанков
+dshuds.cfg.keybind.msg.ON=§aВкл
+dshuds.cfg.keybind.msg.OFF=§cВыкл
+dshuds.cfg.keybind.msg.Fencing=Выделение блоков %s
+dshuds.cfg.keybind.msg.ChunkBorder=Отображение границ чанков %s
+dshuds.cfg.keybind.msg.LLDisplayMode=Режим отображения уровня освещённости %s
+dshuds.cfg.keybind.msg.LLSafeBlocks=Уровень освещённости: прятать безопасные блоки %s
+dshuds.cfg.keybind.msg.LLDisplay=Отображение уровня освещённости %s
+
+# Проверка версии
+dshuds.msg.NewVersion=["§6Доступно обновление: §9[",{"text":"§2%1$s §ev%2$s§f","color":"gold","hoverEvent":{"action":"show_text","value":{"text":"Нажмите, чтобы открыть страницу мода на CurseForge","color":"aqua"}},"clickEvent":{"action":"open_url","value":"%3$s"}},"§9]"]
+
+# Разметка строк
+dshuds.format.SessionTime=Время игры %1$d:%2$02d:%3$02d
+dshuds.season.format=%1$s %2$s
+dshuds.season.noseason=Нет сизона
+dshuds.season.spring=Весна
+dshuds.season.summer=Лето
+dshuds.season.fall=Осень
+dshuds.season.autumn=Осень
+dshuds.season.winter=Зима
+dshuds.season.early=Начало
+dshuds.season.mid=Середина
+dshuds.season.late=Конец
+
+# Настройки
+config.dshuds.logging=Настройки логирования
+config.dshuds.logging.tooltip=Определяет как Dynamic Surroundings будет вести лог
+config.dshuds.logging.enableLogging=Отладка
+config.dshuds.logging.enableLogging.tooltip=Вкл/выкл отладочный лог
+config.dshuds.logging.enableVersionCheck=Проверка новых версий
+config.dshuds.logging.enableVersionCheck.tooltip=Вкл/выкл информацию о новых версиях мода
+config.dshuds.logging.chatnotices=Скрыть уведомления в чате
+config.dshuds.logging.chatnotices.tooltip=Переключает отображение уведомлений Dynamic Surroundings в чате
+
+config.dshuds.potionhud=Интерфейс зелий
+config.dshuds.potionhud.tooltip=Настройки отображения интерфейса зелий
+config.dshuds.potionhud.nohud=Откл. интерфейс зелий
+config.dshuds.potionhud.nohud.tooltip=Выключает интерфейс зелий как оригинальный, так и мода
+config.dshuds.potionhud.enable=Интерфейс зелий
+config.dshuds.potionhud.enable.tooltip=Вкл/выкл отображение плашек с иконкой и именем зелья на экране
+config.dshuds.potionhud.transparency=Прозрачность
+config.dshuds.potionhud.transparency.tooltip=Величина прозрачности для плашек (чем выше – тем непрозрачнее)
+config.dshuds.potionhud.leftoffset=Смещение по горизонтали
+config.dshuds.potionhud.leftoffset.tooltip=Смещение от левой стороны экрана
+config.dshuds.potionhud.topoffset=Смещение по вертикали
+config.dshuds.potionhud.topoffset.tooltip=Смещение от верхней части экрана
+config.dshuds.potionhud.scale=Размер интерфейса
+config.dshuds.potionhud.scale.tooltip=Размер плашки с иконкой и именем зелья
+config.dshuds.potionhud.location=Расположение интерфейса
+config.dshuds.potionhud.location.tooltip=0 - сверху слева, 1 - сверху справа
+
+config.dshuds.lightlevelhud=Отображение уровня освещённости
+config.dshuds.lightlevelhud.tooltip=Настройки для интерфейса уровня освещённости
+config.dshuds.lightlevelhud.range=Расстояние
+config.dshuds.lightlevelhud.range.tooltip=На каком расстоянии в блоках анализировать уровень освещённости
+config.dshuds.lightlevelhud.mobspawnthreshold=Уровень света для появления существ
+config.dshuds.lightlevelhud.mobspawnthreshold.tooltip=Уровень света, при котором могут появляться существа
+config.dshuds.lightlevelhud.hidesafe=Не показывать безопасные блоки
+config.dshuds.lightlevelhud.hidesafe.tooltip=Не показывать уровень освещённости блоков, на которых не могут появляться существа
+config.dshuds.lightlevelhud.indicatecaution=Показывать предупреждение
+config.dshuds.lightlevelhud.indicatecaution.tooltip=Показывать, что уровень освещённости сменится ночью и это приведёт к появлению существ
+config.dshuds.lightlevelhud.colors=Набор цветов
+config.dshuds.lightlevelhud.colors.tooltip=0 - светлый, 1 - тёмный
+config.dshuds.lightlevelhud.displaymode=Режим отображения
+config.dshuds.lightlevelhud.displaymode.tooltip=0: освещённость блока, 1: освещённость блока + свет неба
+
+config.dshuds.compasshud=Компас
+config.dshuds.compasshud.tooltip=Настройки для компаса
+config.dshuds.compasshud.enable=Интерфейс компаса
+config.dshuds.compasshud.enable.tooltip=Вкл/выкл отображение компаса на экране
+config.dshuds.compasshud.style=Вид компаса
+config.dshuds.compasshud.style.tooltip=Выбор стиля компаса
+config.dshuds.compasshud.transparency=Прозрачность компаса
+config.dshuds.compasshud.transparency.tooltip=Величина прозрачности компаса при отрисовке
+config.dshuds.compasshud.format=Формат координат
+config.dshuds.compasshud.format.tooltip=Формат строки координат для отображения местоположения
+
+config.dshuds.clockhud=часы
+config.dshuds.clockhud.tooltip=Настройки для часов
+config.dshuds.clockhud.enable=Интерфейс часов
+config.dshuds.clockhud.enable.tooltip=Вкл/выкл отображение часов на экране

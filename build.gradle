@@ -1,0 +1,144 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = "http://files.minecraftforge.net/maven" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+
+if (file('secrets.properties').exists()) {
+	println "Loading parameters from secrets.properties"
+	ext.secrets = new Properties()
+	file('secrets.properties').withReader {secrets.load(it)}
+}
+
+repositories {
+    maven { url = "http://chickenbones.net/maven/" }
+    maven { url = "http://maven.covers1624.net" }			// CoFH
+    maven { url = "http://dvs1.progwml6.com/files/maven" }	// mezz
+    maven {	url = "http://maven.tterrag.com" }				// Chisel
+    maven { url = "https://repo.elytradev.com/" }
+	maven { url = "http://maven.thiakil.com" }
+    maven {
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply from: 'configuration.gradle'
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+compileJava {
+    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+allprojects {
+
+	minecraft {
+	    runDir = "run"
+	    replace '@VERSION@', project.ext.modVersion
+	    replace '@FINGERPRINT@', project.ext.fingerprint
+	    replace '@UPDATEURL@', project.ext.updateurl
+	    mappings = project.ext.snapshot
+	}
+	
+	dependencies {
+		compile "serene-seasons:SereneSeasons-1.12.2:1.2.13:universal"
+	
+		if (fileTree(dir: 'libs').filter { it.name.startsWith('OreLib') }.getFiles().size() == 0)
+			compile "orelib:OreLib-1.12.2:3.5.1.3BETA:deobf"
+	
+	    //compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.12.2-7.0.1.2402:deobf"
+	    deobfCompile "mezz.jei:jei_1.12.2:4.13.1.224:api"
+	    runtime "mezz.jei:jei_1.12.2:4.13.1.224"
+	    deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.20-12"
+	}
+
+	jar {
+	    manifest {
+	        attributes 'Maven-Artifact': "${project.group}:${project.archivesBaseName}:${project.version}"
+	    }
+	}
+	
+	processResources {
+	    // this will ensure that this task is redone when the versions change.
+	    inputs.property "version", project.version
+	    inputs.property "mcversion", project.minecraft.version
+	
+	    // replace stuff in mcmod.info, nothing else
+	    from(sourceSets.main.resources.srcDirs) {
+	        include 'mcmod.info'
+	                
+	        // replace version and mcversion
+	        expand 'version':project.version, 'mcversion':project.minecraft.version
+	    }
+	        
+	    // copy everything else, thats not the mcmod.info
+	    from(sourceSets.main.resources.srcDirs) {
+	        exclude 'mcmod.info'
+	    }
+	}
+
+	task sourcesJar(type: Jar) {
+	    description = 'Creates a JAR containing the source code.'
+		dependsOn classes
+	    from sourceSets.main.allSource
+	    classifier = 'sources'
+	}
+	
+	task deobfJar(type: Jar) {
+	    description = 'Creates a JAR containing the non-obfuscated compiled code.'
+	    from sourceSets.main.output
+	    manifest {
+	        attributes 'Maven-Artifact': "${project.group}:${project.archivesBaseName}:${project.version}"
+	    }
+	    classifier = "deobf"
+	}
+	
+	// https://gist.github.com/matthewprenger/9b2da059b89433a01c1c
+	task signJar(type: SignJar, dependsOn: reobfJar) {
+	    onlyIf { // Skip the task if our secret data isn't available
+	        project.hasProperty('keyStore')
+	    }
+	    keyStore = project.keyStore // This needs to be a path to the keystore file
+	    alias = project.keyStoreAlias
+	    storePass = project.keyStorePass
+	    keyPass = project.keyStoreKeyPass
+	    inputFile = jar.archivePath
+	    outputFile = jar.archivePath
+	}
+	
+}
+
+minecraft {
+	if (project.ext.has('secrets')) {
+		if (secrets.uuid != null)
+    		clientRunArgs += ["--uuid ${secrets.uuid}"]
+    	if (secrets.username != null)
+    		clientRunArgs += ["--username ${secrets.username}"]
+    	if (secrets.password != null)
+    		clientRunArgs += ["--password ${secrets.password}"]
+    	if (secrets.jvmArgs != null) {
+    		clientJvmArgs += secrets.jvmArgs
+    		serverJvmArgs += secrets.jvmArgs
+    	}
+    }
+}
+
+jar {
+    // Add CREDITS.md
+    into('/') {
+        from('CREDITS.md')
+    }
+}
+
+//Adds the artifact types added by this script to the actual artifacts list.
+artifacts {
+    archives sourcesJar
+    archives deobfJar
+}
+
+build.dependsOn signJar
