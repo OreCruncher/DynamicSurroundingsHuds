@@ -49,13 +49,13 @@ public final class GuiHUDHandler {
 		overlays.add(new LightLevelHUD());
 	}
 
-	@SubscribeEvent(priority = EventPriority.HIGH)
+	@SubscribeEvent(priority = EventPriority.LOW)
 	public static void onRenderGameOverlayEvent(final RenderGameOverlayEvent.Pre event) {
 		for (int i = 0; i < overlays.size(); i++)
 			overlays.get(i).doRender(event);
 	}
 
-	@SubscribeEvent(priority = EventPriority.HIGH)
+	@SubscribeEvent(priority = EventPriority.LOW)
 	public static void onRenderGameOverlayEvent(final RenderGameOverlayEvent.Post event) {
 		for (int i = 0; i < overlays.size(); i++)
 			overlays.get(i).doRender(event);

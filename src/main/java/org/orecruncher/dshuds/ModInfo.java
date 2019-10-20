@@ -36,7 +36,7 @@ public final class ModInfo {
 	//@formatter:off
 	public static final String DEPENDENCIES =
 		"required-after:forge@[14.23.5.2768,);" +
-		"required-after:orelib@[3.5.1.3,);" +
+		"required-after:orelib@[3.5.2.1,);" +
 		"after:sereneseasons@[1.2.12,);" +
 		"after:dsurround@[3.5.4.0,)";
 	//@formatter:on

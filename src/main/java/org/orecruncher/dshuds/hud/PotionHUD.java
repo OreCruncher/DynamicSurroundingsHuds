@@ -147,6 +147,10 @@ public class PotionHUD extends GuiOverlay {
 		return potion == null || !potion.shouldRenderHUD(effect) || !potion.shouldRenderInvText(effect);
 	}
 
+	private boolean f3Active() {
+		return Minecraft.getMinecraft().gameSettings.showDebugInfo;
+	}
+	
 	@Override
 	public void doTick(final int tickRef) {
 		this.potions.clear();
@@ -180,6 +184,10 @@ public class PotionHUD extends GuiOverlay {
 		}
 
 		event.setCanceled(true);
+		
+		if (f3Active()) {
+			return;
+		}
 
 		final ScaledResolution resolution = event.getResolution();
 		final float GUITOP = ModOptions.potionHUD.topOffset;
