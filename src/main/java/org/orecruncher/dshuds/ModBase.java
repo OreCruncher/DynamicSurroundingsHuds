@@ -134,6 +134,6 @@ public class ModBase {
 	@SubscribeEvent
 	public void playerLogin(final PlayerLoggedInEvent event) {
 		if (ModOptions.logging.enableVersionCheck)
-			new VersionChecker(ModInfo.MOD_ID, "dsurroundhuds.msg.NewVersion").playerLogin(event);
+			VersionChecker.doCheck(event, ModInfo.MOD_ID);
 	}
 }
